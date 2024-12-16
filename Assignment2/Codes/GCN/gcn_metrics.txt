@@ -1,0 +1,1 @@
+Test Loss: 0.3917, Test Acc: 0.9032, Precision: 0.9049, Recall: 0.9032, F1: 0.9031
