@@ -1,59 +1,92 @@
-# Complex Networks Assignment 1: Calculating Centrality Measures
+# Complex Networks Assignments: 2023-24
 
 ## Overview
-This project involves calculating **Closeness Centrality**, **Betweenness Centrality**, and **PageRank** for the nodes in the CORA network dataset. The centrality measures are derived from the citation graph provided in the dataset.
+This repository contains the solutions for two assignments from the **Complex Networks (CS60078)** course. Both assignments use the **CORA dataset**, a widely-used benchmark in the graph learning community, and focus on various graph-based analysis and classification tasks.
 
-## Dataset
-The dataset used is the **CORA dataset**, available at: [https://linqs.org/datasets/#cora](https://linqs.org/datasets/#cora). The dataset consists of:
-- `cora.content`: Describes papers with binary word attributes and class labels.
-- `cora.cites`: Describes the citation graph.
+---
 
-## Files in Repository
-- `gen_centrality.py`: Main script for computing centrality measures.
-- `instructions.txt`: Contains steps to execute the code and assumptions made.
-- Centrality results are stored in the `centralities` folder as:
-  - `closeness.txt`
-  - `betweenness.txt`
-  - `pagerank.txt`
+## Assignment 1: Calculating Centrality Measures
+### Objective
+Calculate the following centrality measures for the CORA graph:
+1. **Closeness Centrality**
+2. **Betweenness Centrality**
+3. **PageRank**
 
-## Requirements
-- **Python version**: 3.8.10
-- **Libraries**:
-  - `numpy`
-  - `pandas`
-  - `os`
-  - `collections`
-  - `sys`
+### Files and Outputs
+- **Script**: `gen_centrality.py`
+- **Outputs**:
+  - `centralities/closeness.txt`
+  - `centralities/betweenness.txt`
+  - `centralities/pagerank.txt`
 
-Install missing libraries using:
-```bash
-pip3 install <library_name>
-```
+Each output file contains `<nodeID> <centrality_value>` pairs, sorted by descending centrality values.
 
-## Instructions
-1. Clone the repository and navigate to the project root.
-2. Place the `cora.cites` file in a folder named `cora` (e.g., `cora/cora.cites`).
-3. Run the following command:
+### Requirements
+- Python 3.8.10
+- Libraries: `numpy`, `pandas`, `os`, `collections`, `sys`
+
+### Instructions
+1. Place the CORA dataset files in the `cora` folder.
+2. Run the script:
    ```bash
    python3 gen_centrality.py
    ```
 
-## Output
-- The results are stored in the `centralities` folder in three separate files:
-  - **Closeness Centrality**: `closeness.txt`
-  - **Betweenness Centrality**: `betweenness.txt`
-  - **PageRank**: `pagerank.txt`
-- Each file contains lines in the format: `<nodeID> <centrality_value>` (rounded to six decimal places) and sorted by descending centrality value.
+### Notes
+- The program takes approximately **3 hours and 30 minutes** to execute.
+- Ensure adequate resources (minimum 2GB RAM).
 
-## Assumptions
-1. Nodes with no outgoing edges are adjusted for better graph representation.
-2. Unreachable nodes in Closeness Centrality are assigned a default maximum distance (2708 nodes).
-3. PageRank iterations terminate after 50 iterations or if the values converge within six decimal places.
-4. Results are sorted in descending order by centrality value.
+---
 
-## Execution Time
-The program takes approximately **3 hours and 30 minutes** to execute due to the size of the dataset and computational complexity.
+## Assignment 2: Node Classification
+### Objective
+Perform node classification using two approaches:
+1. **Logistic Regression (LR)** with Node2Vec-generated embeddings.
+2. **Graph Convolutional Networks (GCN)** based on Kipf's ICLR 2017 paper.
 
-## Notes
-- Ensure adequate system resources (minimum 2GB RAM) for execution.
-- Report long runtimes or convergence issues as mentioned in `instructions.txt`.
+### Files and Outputs
+#### Part 1: Node2Vec and Logistic Regression
+- **Script**: `LR/LR.py`
+- **Output**: `LR/lr_metrics.txt`
+
+#### Part 2: Graph Convolutional Networks (GCN)
+- **Script**: `GCN/GCN.py`
+- **Output**: `GCN/gcn_metrics.txt`
+
+### Requirements
+- Python 3.8.10
+- Libraries: `numpy`, `pandas`, `networkx`, `sklearn`, `torch`, `torch_geometric`
+
+### Instructions
+1. Place the CORA dataset files in the `data` folder.
+2. Run the scripts:
+   - Logistic Regression:
+     ```bash
+     python3 LR/LR.py
+     ```
+   - GCN:
+     ```bash
+     python3 GCN/GCN.py
+     ```
+
+### Comparison and Insights
+- Detailed results and insights are provided in `Analysis.pdf`.
+- Key metrics:
+  - **Logistic Regression**: Accuracy = 0.8512, F1 Score = 0.8469
+  - **GCN**: Accuracy = 0.9032, F1 Score = 0.9031
+
+---
+
+## General Notes
+- Ensure all dataset files are correctly placed as instructed in each assignment.
+- Install missing libraries using:
+  ```bash
+  pip3 install <library_name>
+  ```
+- Report any long runtimes or convergence issues in the `instructions.txt` file.
+
+---
+
+## Credits
+- **Name**: Avik Pramanick
+- **Roll Number**: 23CS60R78
